@@ -551,7 +551,7 @@ export function nextBestQuestion(a: Answers) {
   const scored = vis
     .map((q) => ({ q, w: weights[q.id] ?? 10 - QUESTIONS.findIndex((x) => x.id === q.id) / 100 }))
     .sort((x, y) => y.w - x.w);
-  return scored[0].q;
+  return scored[0]?.q ?? null;
 }
 
 export function alerts(a: Answers, m: Metrics): string[] {
