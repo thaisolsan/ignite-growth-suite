@@ -106,7 +106,7 @@ export function computeFunnel(a: Answers, m: Metrics): FunnelStage[] {
   const filled = seq.filter((s) => s.v !== null) as { key: string; label: string; v: number }[];
   const finalRate = m.conversaoGeral;
   return filled.map((s, i) => {
-    const prev = i > 0 ? filled[i - 1].v : null;
+    const prev = i > 0 ? (filled[i - 1]?.v ?? null) : null;
     const loss = prev !== null ? Math.max(0, prev - s.v) : 0;
     return {
       key: s.key,
